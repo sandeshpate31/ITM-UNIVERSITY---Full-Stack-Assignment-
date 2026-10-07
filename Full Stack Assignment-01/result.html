@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result | ITM University</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="result.css">
+</head>
+<body class="result-page">
+
+<nav class="navbar">
+    <div class="logo-section">
+        <div class="itm-logo">
+            <img src="Logo.png" alt="ITM University Logo">
+        </div>
+        <div class="brand-text">
+            <h2>ITM University</h2>
+            <span>Student Result Portal</span>
+        </div>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Registration</a>
+        <a href="result.html" class="active">My Result</a>
+    </div>
+</nav>
+
+<main class="result-main">
+    <section class="result-hero">
+        <div class="result-success-icon">✓</div>
+        <span class="tag">🎓 RESULT GENERATED</span>
+        <h1>Congratulations, <span id="welcomeName">Student</span>!</h1>
+        <p>Your registration is complete. Here is your academic performance report.</p>
+    </section>
+
+    <section class="result-container">
+        <div class="result-top">
+            <div>
+                <span class="result-label">ACADEMIC REPORT</span>
+                <h2>Student Performance</h2>
+                <p>Registration and marks summary</p>
+            </div>
+            <span class="result-chip">✓ Processed</span>
+        </div>
+
+        <div class="student-details">
+            <div><span>Student Name</span><strong id="resultName">-</strong></div>
+            <div><span>Email Address</span><strong id="resultEmail">-</strong></div>
+            <div><span>Phone Number</span><strong id="resultPhone">-</strong></div>
+            <div><span>Course</span><strong id="resultCourse">-</strong></div>
+            <div><span>Submission Date</span><strong id="resultDate">-</strong></div>
+        </div>
+
+        <div class="result-cards">
+            <div class="result-card">
+                <span>Total Marks</span>
+                <strong><span id="totalMarks">0</span></strong>
+                <small>Out of 400</small>
+            </div>
+
+            <div class="result-card">
+                <span>Percentage</span>
+                <strong><span id="percentage">0</span>%</strong>
+                <small>Average across subjects</small>
+            </div>
+
+            <div class="result-card">
+                <span>Grade</span>
+                <strong id="grade">-</strong>
+                <small>Overall grade</small>
+            </div>
+
+            <div class="result-card status-card" id="statusCard">
+                <span>Final Result</span>
+                <strong id="status">-</strong>
+                <small>Each subject requires 40 marks to pass</small>
+            </div>
+        </div>
+
+        <div class="breakdown">
+            <h3>📊 Subject-wise Marks Breakdown</h3>
+
+            <div class="breakdown-row">
+                <span>HTML</span>
+                <div class="progress"><div id="htmlProgress" class="progress-bar"></div></div>
+                <strong id="htmlResult">0</strong>
+            </div>
+
+            <div class="breakdown-row">
+                <span>CSS</span>
+                <div class="progress"><div id="cssProgress" class="progress-bar"></div></div>
+                <strong id="cssResult">0</strong>
+            </div>
+
+            <div class="breakdown-row">
+                <span>JavaScript</span>
+                <div class="progress"><div id="jsProgress" class="progress-bar"></div></div>
+                <strong id="jsResult">0</strong>
+            </div>
+
+            <div class="breakdown-row">
+                <span>React JS</span>
+                <div class="progress"><div id="reactProgress" class="progress-bar"></div></div>
+                <strong id="reactResult">0</strong>
+            </div>
+        </div>
+
+        <div class="json-section">
+            <div class="json-header">
+                <div>
+                    <h3>Student JSON Data</h3>
+                    <p>Student information stored in Local Storage</p>
+                </div>
+                <span>JSON</span>
+            </div>
+            <pre id="jsonOutput"></pre>
+            <button type="button" class="copy-btn" id="copyBtn">Copy JSON Data</button>
+            <p id="copyMessage" class="copy-message" aria-live="polite"></p>
+        </div>
+
+        <div class="result-actions">
+            <button type="button" class="print-btn" onclick="window.print()">Print Result</button>
+            <a href="index.html" class="back-btn">← Back to Registration</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-logo">ITM University</div>
+    <p>Student Registration &amp; Result Management System</p>
+    <span>Developed using HTML5 • CSS3 • JavaScript</span>
+</footer>
+
+<script>
+    const rawStudent = localStorage.getItem("itmStudent");
+
+    if (!rawStudent) {
+        document.querySelector(".result-main").innerHTML = `
+            <section class="result-container empty-result">
+                <div class="result-success-icon">!</div>
+                <h1>No Result Found</h1>
+                <p>Please complete your student registration first.</p>
+                <a href="index.html" class="back-btn">Go to Registration</a>
+            </section>
+        `;
+    } else {
+        try {
+            const student = JSON.parse(rawStudent);
+
+            document.getElementById("welcomeName").textContent = student.studentName;
+            document.getElementById("resultName").textContent = student.studentName;
+            document.getElementById("resultEmail").textContent = student.email;
+            document.getElementById("resultPhone").textContent = student.phone;
+            document.getElementById("resultCourse").textContent = student.course;
+            document.getElementById("resultDate").textContent = student.submittedAt;
+            document.getElementById("totalMarks").textContent = student.totalMarks;
+            document.getElementById("percentage").textContent = Number(student.percentage).toFixed(2);
+            document.getElementById("grade").textContent = student.grade;
+            document.getElementById("status").textContent = student.result;
+
+            const subjects = [
+                { key: "HTML", result: "htmlResult", progress: "htmlProgress" },
+                { key: "CSS", result: "cssResult", progress: "cssProgress" },
+                { key: "JavaScript", result: "jsResult", progress: "jsProgress" },
+                { key: "ReactJS", result: "reactResult", progress: "reactProgress" }
+            ];
+
+            subjects.forEach(subject => {
+                const mark = Number(student.marks[subject.key]);
+
+                document.getElementById(subject.result).textContent = mark;
+
+                requestAnimationFrame(() => {
+                    document.getElementById(subject.progress).style.width = mark + "%";
+                });
+            });
+
+            const statusCard = document.getElementById("statusCard");
+            const statusText = document.getElementById("status");
+
+            if (student.result === "PASS") {
+                statusCard.classList.add("passed");
+                statusCard.classList.remove("failed");
+                statusText.style.color = "#16a34a";
+            } else {
+                statusCard.classList.add("failed");
+                statusCard.classList.remove("passed");
+                statusText.style.color = "#dc2626";
+            }
+
+            document.getElementById("jsonOutput").textContent =
+                JSON.stringify(student, null, 4);
+
+            document.getElementById("copyBtn").addEventListener("click", async () => {
+                const message = document.getElementById("copyMessage");
+
+                try {
+                    await navigator.clipboard.writeText(
+                        JSON.stringify(student, null, 4)
+                    );
+                    message.textContent = "✓ JSON copied successfully!";
+                } catch (error) {
+                    message.textContent =
+                        "Copy is unavailable. Please select and copy the JSON manually.";
+                }
+            });
+
+        } catch (error) {
+            document.querySelector(".result-main").innerHTML = `
+                <section class="result-container empty-result">
+                    <h1>Unable to Load Result</h1>
+                    <p>The saved student data is invalid. Please register again.</p>
+                    <a href="index.html" class="back-btn">Go to Registration</a>
+                </section>
+            `;
+        }
+    }
+</script>
+</body>
+</html>

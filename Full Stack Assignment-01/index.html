@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITM Student Registration Main Project </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo-section">
+        <div class="itm-logo">
+            <img src="Logo.png" alt="ITM University Logo">
+        </div>
+        <div class="brand-text">
+            <h2>ITM University</h2>
+            <span>Student Registration Portal</span>
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#registration" class="active">Registration</a>
+        <a href="#contact">Contact Us</a>
+        <a href="#login">Login</a>
+    </div>
+</nav>
+
+<main id="registration">
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="tag">🎓 ITM STUDENT PORTAL</span>
+            <h1>ITM Student <span>Registration</span></h1>
+            <p>Register your academic details and check your performance with our Student Result Management System.</p>
+        </div>
+    </section>
+
+    <section class="form-container">
+        <div class="form-header">
+            <div class="form-icon">🎓</div>
+            <div>
+                <h2>Student Registration Form</h2>
+                <p>Enter your personal and academic information</p>
+            </div>
+        </div>
+
+        <form id="studentForm" novalidate>
+            <div class="section-title"><span>01</span> Personal Information</div>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="studentName">Student Name *</label>
+                    <input type="text" id="studentName" placeholder="Enter your full name" autocomplete="name">
+                    <small class="error" id="nameError"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" placeholder="example@gmail.com" autocomplete="email">
+                    <small class="error" id="emailError"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric">
+                    <small class="error" id="phoneError"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="course">Select Course *</label>
+                    <select id="course">
+                        <option value="">-- Select Course --</option>
+                        <option value="B.Tech-CSE">B.Tech - CSE</option>
+                        <option value="MCA">MCA</option>
+                        <option value="MBA">MBA</option>
+                        <option value="BCA">BCA</option>
+                        <option value="M.Tech-CSE">M.Tech - CSE</option>
+                    </select>
+                    <small class="error" id="courseError"></small>
+                </div>
+            </div>
+
+            <div class="section-title marks-title"><span>02</span> Academic Marks</div>
+            <p class="marks-info">Enter marks obtained in each subject. Maximum marks: <strong>100</strong></p>
+
+            <div class="marks-grid">
+                <div class="mark-card">
+                    <div class="subject-icon html-icon">H</div>
+                    <div class="mark-content">
+                        <label for="htmlMarks">HTML Marks *</label>
+                        <input type="number" id="htmlMarks" placeholder="0 - 100" min="0" max="100" step="1">
+                        <small class="error" id="htmlMarksError"></small>
+                    </div>
+                </div>
+
+                <div class="mark-card">
+                    <div class="subject-icon css-icon">C</div>
+                    <div class="mark-content">
+                        <label for="cssMarks">CSS Marks *</label>
+                        <input type="number" id="cssMarks" placeholder="0 - 100" min="0" max="100" step="1">
+                        <small class="error" id="cssMarksError"></small>
+                    </div>
+                </div>
+
+                <div class="mark-card">
+                    <div class="subject-icon js-icon">JS</div>
+                    <div class="mark-content">
+                        <label for="jsMarks">JavaScript Marks *</label>
+                        <input type="number" id="jsMarks" placeholder="0 - 100" min="0" max="100" step="1">
+                        <small class="error" id="jsMarksError"></small>
+                    </div>
+                </div>
+
+                <div class="mark-card">
+                    <div class="subject-icon react-icon">R</div>
+                    <div class="mark-content">
+                        <label for="reactMarks">React JS Marks *</label>
+                        <input type="number" id="reactMarks" placeholder="0 - 100" min="0" max="100" step="1">
+                        <small class="error" id="reactMarksError"></small>
+                    </div>
+                </div>
+            </div>
+
+            <div id="marksError" class="marks-error" role="alert"></div>
+
+            <button type="submit" id="submitBtn" class="submit-btn">
+                <span id="buttonText">Submit Registration →</span>
+                <span id="loader" class="loader"></span>
+            </button>
+            <p class="required-note">* All fields are required.</p>
+        </form>
+    </section>
+</main>
+
+<footer id="contact">
+    <div class="footer-logo">ITM University</div>
+    <p>Student Registration &amp; Result Management System</p>
+    <span>Developed using HTML5 • CSS3 • JavaScript</span>
+</footer>
+
+<!-- SUCCESS POPUP -->
+<div class="modal-overlay" id="successModal" aria-hidden="true">
+    <div class="success-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="success-animation">
+            <svg viewBox="0 0 60 60" aria-hidden="true">
+                <circle cx="30" cy="30" r="27"></circle>
+                <path d="M16 30 L26 40 L45 20"></path>
+            </svg>
+        </div>
+
+        <span class="modal-badge">REGISTRATION COMPLETED</span>
+        <h2 id="modalTitle">Form Submitted Successfully!</h2>
+        <p>Your student registration has been validated successfully.</p>
+
+        <div class="modal-details">
+            <span>🎓</span>
+            <div>
+                <strong id="popupStudentName">Student</strong>
+                <small>Your academic result is ready to be processed.</small>
+            </div>
+        </div>
+
+        <button type="button" id="okayBtn" class="okay-btn">Okay, Continue ✓</button>
+        <small class="modal-footer">Please click Okay to continue to your result.</small>
+    </div>
+</div>
+
+<!-- ONE-MINUTE WAIT SCREEN -->
+<div class="wait-overlay" id="waitScreen" aria-hidden="true">
+    <div class="wait-card">
+        <div class="wait-spinner"></div>
+        <span class="wait-badge">REGISTRATION SUCCESSFUL</span>
+        <h2>Preparing Your Result</h2>
+        <p>Please wait while we prepare your academic performance report.</p>
+
+        <div class="countdown-circle">
+            <strong id="countdown">60</strong>
+            <span>SECONDS</span>
+        </div>
+
+        <div class="wait-progress">
+            <div id="waitProgressBar"></div>
+        </div>
+        <p class="wait-status" id="waitStatus">Initializing result processing...</p>
+        <small>Please do not refresh or close this page.</small>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
