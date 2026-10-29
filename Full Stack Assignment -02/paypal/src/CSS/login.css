@@ -1,0 +1,390 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #12304a;
+  background: #f4f8fd;
+  font-synthesis: none;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  color: #0866c6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.site-header {
+  height: 76px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-bottom: 1px solid #e4edf6;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #073b70;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-mark,
+.auth-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: #0969c9;
+  color: white;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-weight: 600;
+}
+
+.nav-signup {
+  padding: 11px 19px;
+  border-radius: 24px;
+  background: #0969c9;
+  color: white;
+}
+
+.nav-signup:hover {
+  background: #064f9a;
+  text-decoration: none;
+}
+
+.auth-page {
+  min-height: calc(100vh - 130px);
+  padding: 42px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at top left, #e2f0ff 0, transparent 45%),
+    #f4f8fd;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 490px;
+  padding: 36px;
+  background: white;
+  border: 1px solid #e1eaf4;
+  border-radius: 20px;
+  box-shadow: 0 16px 45px rgba(20, 65, 110, 0.09);
+}
+
+.auth-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 22px;
+  border-radius: 15px;
+  font-size: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 9px;
+  color: #0969c9;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.auth-card h1 {
+  margin: 0;
+  color: #12304a;
+  font-size: 29px;
+  line-height: 1.25;
+}
+
+.auth-description {
+  margin: 12px 0 25px;
+  color: #62768a;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-card label {
+  margin: 15px 0 8px;
+  color: #25435e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.auth-card input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #cbd8e6;
+  border-radius: 9px;
+  outline: none;
+  background: #fff;
+  color: #17334e;
+  font-size: 14px;
+  transition: border-color 0.15s ease;
+}
+
+.auth-card input::placeholder {
+  color: #98a9ba;
+}
+
+.auth-card input:focus {
+  border-color: #0969c9;
+  box-shadow: 0 0 0 3px rgba(9, 105, 201, 0.1);
+}
+
+.primary-button {
+  width: 100%;
+  min-height: 49px;
+  margin-top: 23px;
+  border: none;
+  border-radius: 25px;
+  background: #0969c9;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background: #064f9a;
+}
+
+.notice {
+  margin-top: 17px;
+  padding: 12px 14px;
+  border-radius: 9px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.notice.error {
+  border: 1px solid #f2c5c5;
+  background: #fff2f2;
+  color: #a32222;
+}
+
+.notice.success {
+  border: 1px solid #b7e5cc;
+  background: #effbf4;
+  color: #17683b;
+}
+
+.auth-footer {
+  margin: 23px 0 0;
+  text-align: center;
+  color: #5c7185;
+  font-size: 14px;
+}
+
+.auth-footer a {
+  font-weight: 700;
+}
+
+.official-link {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.site-footer {
+  padding: 18px;
+  background: #fff;
+  color: #77899a;
+  text-align: center;
+  font-size: 12px;
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    height: 68px;
+    padding: 0 16px;
+  }
+
+  .brand {
+    font-size: 17px;
+  }
+
+  .site-header nav {
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .nav-signup {
+    padding: 10px 13px;
+  }
+
+  .auth-page {
+    padding: 24px 12px;
+  }
+
+  .auth-card {
+    padding: 25px 20px;
+    border-radius: 15px;
+  }
+
+  .auth-card h1 {
+    font-size: 25px;
+  }
+}
+
+
+.auth-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 24px;
+}
+
+.paypal-logo {
+  display: block;
+  width: 58px;
+  height: auto;
+  object-fit: contain;
+}
+
+.demo-label {
+  margin-top: 18px;
+  color: #718096;
+  font-size: 12px;
+  text-align: center;
+}
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(13, 39, 68, 0.48);
+}
+
+.popup-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 32px 26px;
+  border: 1px solid #dce9f7;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0, 39, 80, 0.2);
+  text-align: center;
+}
+
+.popup-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.popup-success {
+  color: #087443;
+  background: #e6f8ef;
+  border: 1px solid #b8ebcf;
+}
+
+.popup-error {
+  color: #b42332;
+  background: #fff0f1;
+  border: 1px solid #ffd0d4;
+}
+
+.popup-card h2 {
+  margin: 0 0 12px;
+  color: #12304a;
+  font-size: 23px;
+}
+
+.popup-card p {
+  margin: 0;
+  color: #62768a;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.popup-button {
+  margin-top: 24px;
+}
+
+
+.password-rules {
+  margin-top: 12px;
+  padding: 15px;
+  background: #f4f8fd;
+  border: 1px solid #e0eaf5;
+  border-radius: 10px;
+}
+
+.password-rules-title {
+  margin: 0 0 10px;
+  color: #24445f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.password-rules p:not(.password-rules-title) {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.password-rules .rule {
+  color: #6e8092;
+}
+
+.password-rules .rule span {
+  color: #91a1b1;
+  font-size: 15px;
+}
+
+.password-rules .rule-valid {
+  color: #087443;
+}
+
+.password-rules .rule-valid span {
+  color: #087443;
+  font-weight: 700;
+}
